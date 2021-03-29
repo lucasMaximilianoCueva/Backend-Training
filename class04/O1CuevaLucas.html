@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.6.3/rxjs.umd.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" class="inputText" value="" />
+    <span class="textCopy"></span>
+    <script>
+      const { Observable } = rxjs;
+
+      const input = document.querySelector(".inputText");
+      const span = document.querySelector(".textCopy");
+
+      const observableInput = new Observable((suscriber) => {
+        input.addEventListener("input", function (event) {
+          if (event.target.value == "error") {
+            suscriber.error('Error by typing "error".');
+          } else if (event.target.value == "complete") {
+            suscriber.complete();
+          } else {
+            const inputData = input.value.split("").reverse().join("");
+            suscriber.next(inputData);
+          }
+        });
+
+        return () => {
+          console.log("Unsubscribe");
+          input.value = "";
+          span.textContent = "";
+          input.disabled = true;
+        };
+      });
+
+      const suscriptor = observableInput.subscribe(
+        (response) => (span.textContent = response), // next()
+        (error) => console.log(error), // error()
+        () => {
+          console.log("Complete Observable"); // complete()
+        }
+      );
+
+      setTimeout(() => {
+        suscriptor.unsubscribe();
+        console.log("Automatically.");
+      }, 30 * 1000);
+    </script>
+  </body>
+</html>
