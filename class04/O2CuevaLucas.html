@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.6.3/rxjs.umd.min.js"></script>
-    <title>O1CuevaLucas</title>
+    <title>O2CuevaLucas</title>
   </head>
   <body>
     <div class="form__group field">
@@ -87,19 +87,19 @@ body {
     <script>
       const { Observable } = rxjs;
       const { fromEvent } = rxjs;
+      const { map } = rxjs.operators;
 
       const input = document.querySelector(".inputText");
       const span = document.querySelector(".textCopy");
 
       const observableInput = new Observable((suscriber) => {
-        fromEvent(input, 'input').subscribe((event) => {
+        fromEvent(input, "input").subscribe((event) => {
           if (event.target.value == "error") {
             suscriber.error('Error by typing "error".');
           } else if (event.target.value == "complete") {
             suscriber.complete();
           } else {
-            const inputData = input.value.split("").reverse().join("");
-            suscriber.next(inputData);
+            suscriber.next(input.value);
           }
         });
 
@@ -111,13 +111,15 @@ body {
         };
       });
 
-      const suscriptor = observableInput.subscribe(
-        (response) => (span.textContent = response), // next()
-        (error) => console.log(error), // error()
-        () => {
-          console.log("Complete Observable"); // complete()
-        }
-      );
+      const suscriptor = observableInput
+        .pipe(map((val) => val.split("").reverse().join("")))
+        .subscribe(
+          (response) => (span.textContent = response), // next()
+          (error) => console.log(error), // error()
+          () => {
+            console.log("Complete Observable"); // complete()
+          }
+        );
 
       setTimeout(() => {
         suscriptor.unsubscribe();
