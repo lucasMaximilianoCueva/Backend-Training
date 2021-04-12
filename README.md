@@ -20,3 +20,13 @@ Crear un objeto llamado usuario a partir de la función constructora, con valore
 ```
 2) Realizar todo lo anterior utilizando el constructor class de ES6
 ```
+
+### `Aspectos a incluir en el entregable:
+Se debe proporcionar el código completo dentro de un script interno en dos documentos HTML: uno para la resolución con la función constructora y el otro con class.`
+
+```
+Ejemplo:
+getMascotas: Suponiendo que el usuario tiene estas mascotas: ['perro', 'gato'] usuario.getMascotas() debería devolver 2.
+getBooks: Suponiendo que el usuario tiene estos libros: [{nombre: 'El señor de las moscas',autor: 'William Golding'}, {nombre: 'Fundacion', autor: 'Isaac Asimov'}] usuario.getBooks() debería devolver ['El señor de las moscas', 'Fundacion'].
+getFullName: Suponiendo que el usuario tiene: nombre: 'Elon' y apellido: 'Musk' usuario.getFullName() deberia devolver 'Elon Musk'
+```
