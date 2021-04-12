@@ -21,8 +21,11 @@ El formato de cada producto será :**
 <br />
 
 La función guardar incorporará al producto un id, el cual se obtendrá de la longitud total del array actual más 1.
+<br />
 Con el método leer se mostrará en consola el listado total (si el archivo existe) como un array de productos. Si el archivo no existe, se retornará un array vacío.
+<br />
 El método borrar elimina el archivo completo.
-Implementar el manejo de archivos con el módulo fs de node.js, utilizando promesas con async await y manejo de errores.
+
+### `Implementar el manejo de archivos con el módulo fs de node.js, utilizando promesas con async await y manejo de errores.`
 
 
