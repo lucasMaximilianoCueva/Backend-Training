@@ -18,5 +18,4 @@
 
 ### `Aspectos a incluir en el entregable:
 1) Serializar el objeto (con JSON.stringify()) antes de enviarlo al frontend
-2) El servidor debe estar creado en una cuenta no anónima para que su código sea persistente luego de los 5 días de creado.
-`
+2) El servidor debe estar creado en una cuenta no anónima para que su código sea persistente luego de los 5 días de creado.`
