@@ -2,8 +2,8 @@
 
 **Formato: Dos documentos HTML con JS interno, con los nombres “FC+ApellidoNombre” “C+ApellidoNombre” para consignas 1 y 2.
 Sugerencia: Utilizar live server en VSC y la consola del navegador.**
-
->> Consigna: 
+ 
+### `Consigna:`
 
 
 ```
