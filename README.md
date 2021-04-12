@@ -1,6 +1,6 @@
 ### `Curso online en vivo de Programación Backend`
 
-**Challenges semanales del curso**
+**Challenges semanales del curso, cada Branch contiene la consigna y el desafío correspondiente a cada clase.**
 
 ### `Perfil Profesional`
 <br />
