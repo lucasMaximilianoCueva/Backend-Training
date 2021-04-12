@@ -4,6 +4,7 @@
 Sugerencia: Utilizar live server en VSC y la consola del navegador.**
  
 ### `Consigna:`
+<br />
 
 
 ```
@@ -16,5 +17,6 @@ addBook: recibe un string 'book' y un string 'autor' y debe agregar un objeto: {
 getBooks: debe retornar un arreglo con sólo los nombres del arreglo de libros del usuario.  
 Crear un objeto llamado usuario a partir de la función constructora, con valores que permitan probar todos sus métodos. Hacer el test completo empleando la consola del navegador.
 ```
-
+```
 2) Realizar todo lo anterior utilizando el constructor class de ES6
+```
