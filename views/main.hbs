@@ -1,0 +1,65 @@
+<div class="container">
+      <div class="loginForm col-lg-5 col-md-8 col-sm-8 p-4">
+        <div class="loginHeader pt-3 pb-4">
+          <h4>Product Form</h4>
+          <p>Type a Product!</p>
+        </div>
+        <form action="./api/products" method="post">
+          <div class="loginBody">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="title"
+                  class="form-control form-control-lg"
+                  name="title"
+                  placeholder="Name"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text p-3"
+                    ><i class="fa fa-user"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  id="price"
+                  class="form-control form-control-lg"
+                  name="price"
+                  placeholder="Price"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text p-3"
+                    ><i class="fa fa-lock"></i
+                  ></span>
+                </div>
+              </div> </div
+            ><div class="form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="thumbnail"
+                  class="form-control form-control-lg"
+                  name="thumbnail"
+                  placeholder="Url Image"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text p-3"
+                    ><i class="fa fa-lock"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="text-right form-group">
+              <a href="#">Help ?</a>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-block btn-lg btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
