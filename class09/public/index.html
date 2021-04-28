@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Ingreso de Productos</title>
+    <title>Product Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -12,42 +12,82 @@
       crossorigin="anonymous"
     />
   </head>
-  <body class="p-4">
-    <h1 class="mb-2">Formularios de Ingreso</h1>
-    <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
-        <h2 class="text-center">Ingreso de Producto</h2>
+  <body>
+    <div class="container">
+      <div class="loginForm col-lg-5 col-md-8 col-sm-8 p-4">
+        <div class="loginHeader pt-3 pb-4">
+          <h4>Product Form</h4>
+          <p>Type a Product!</p>
+        </div>
         <form id="form-producto" action="/api/products" method="post">
-          <div class="form-group">
-            <input
-              type="text"
-              name="title"
-              id="title"
-              placeholder="Nombre"
-              class="form-control"
-            />
+          <div class="loginBody">
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="title"
+                  class="form-control form-control-lg"
+                  name="title"
+                  placeholder="Name"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text p-3"
+                    ><i class="fa fa-user"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="number"
+                  id="price"
+                  class="form-control form-control-lg"
+                  name="price"
+                  placeholder="Price"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text p-3"
+                    ><i class="fa fa-lock"></i
+                  ></span>
+                </div>
+              </div> </div
+            ><div class="form-group">
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  id="thumbnail"
+                  class="form-control form-control-lg"
+                  name="thumbnail"
+                  placeholder="Url Image"
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text p-3"
+                    ><i class="fa fa-lock"></i
+                  ></span>
+                </div>
+              </div>
+            </div>
+            <div class="text-right form-group">
+              <a href="#">Help ?</a>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-block btn-lg btn-primary">Send</button>
+            </div>
           </div>
-          <div class="form-group">
-            <input
-              type="number"
-              name="price"
-              id="price"
-              placeholder="Precio"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              name="thumbnail"
-              id="thumbnail"
-              placeholder="URL imagen"
-              class="form-control"
-            />
-          </div>
-          <button class="btn btn-block btn-primary">Ingresar</button>
         </form>
       </div>
     </div>
+
+    <style>
+      .loginForm {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #f3f3f3;
+        box-shadow: 1px 1px 4px #dcdcdc;
+      }
+    </style>
   </body>
 </html>
