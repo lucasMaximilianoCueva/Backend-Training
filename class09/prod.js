@@ -1,28 +1,26 @@
-const PRODUCTS_DB = [];
-
 export class ProductsDB {
-    constructor() {}
+    constructor() {
+        this.PRODUCTS_DB = [];
+        this.nextProdDb = 0;
+    }
 
     getProd() {
-        if(PRODUCTS_DB.length >= 1) {
-            return PRODUCTS_DB;
-        }
-        return false;
+        return this.PRODUCTS_DB.length
+        ? [...this.PRODUCTS_DB]
+        : { error: 'No Products Loaded' }
     };
 
     getProdId(id) {
-        const reqPar = PRODUCTS_DB.filter(
-            (product) => product.id === Number(id)
+        const reqP = this.PRODUCTS_DB.find(
+            (product) => product.id == (id)
         );
-        if(reqPar.length < 1) {
-            return false;
-        }
-        return reqPar;
+        return reqP || { error: 'No Products Founded' }
     };
 
     postProd(data) {
-        data.id = PRODUCTS_DB.length + 1;
-        PRODUCTS_DB.push(data);
+        const newProd = { ...data, id: ++this.nextProdDb };
+        this.PRODUCTS_DB.push(newProd);
+        return newProd;
     };
 
     putProd(data, id) {
