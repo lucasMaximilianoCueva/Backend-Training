@@ -17,12 +17,12 @@ const createProducts = () => {
   routeProducts.get("/:id", (req, res) => {
     const { id } = req.params;
       res.json(products.getProdId(id));
-
   });
 
   routeProducts.post("/", (req, res) => {
     const data = req.body;
-    res.json(products.postProd(data));
+    products.postProd(data)
+    res.redirect('/');
   });
 
   routeProducts.put("/:id", (req, res) => {
@@ -39,3 +39,4 @@ const createProducts = () => {
 };
 
 export { createProducts };
+
