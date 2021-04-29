@@ -1,0 +1,19 @@
+{
+  "name": "backend-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "JACuevaLucas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucasMaximilianoCueva/Backend-Training.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucasMaximilianoCueva/Backend-Training/issues"
+  },
+  "homepage": "https://github.com/lucasMaximilianoCueva/Backend-Training#readme"
+}
