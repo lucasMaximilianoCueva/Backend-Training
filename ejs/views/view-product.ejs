@@ -1,0 +1,32 @@
+<%- include('./index.ejs') -%> 
+
+<h1 class="text-center">Product List</h1>
+
+<% if(products.error) { %>
+  <h1>Products Not Found</h1>
+  <% } else {%>
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+<% products.forEach(item => { %>
+    <tr>
+      <th scope="row"><%= item.id %></th>
+      <td><%= item.title%></td>
+      <td><%= item.price %></td>
+      <td><img src="<%= item.thumbnail %>" class="img-thumbnail" style="width: 100px;" alt="<%= item.title %>"></td>
+    </tr>
+<% }) %>
+  </tbody>
+</table>
+</div>
+<% } %>
+
+<%- include('./footer.ejs') -%>

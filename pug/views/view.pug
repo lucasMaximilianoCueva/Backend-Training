@@ -1,0 +1,24 @@
+extends main 
+
+block view
+    h1 Product List
+    if products.error
+        h3 No Products Found
+    else 
+        div(class='container table-responsive py-5')   
+            table(class='table table-bordered table-hover')
+                thead(class='thead-dark')
+                    tr
+                        th(scope='col') Id 
+                        th(scope='col') Product
+                        th(scope='col') Price
+                        th(scope='col') Image
+                tbody 
+                    #products
+                    each item in products
+                        tr 
+                            th(scope='row')= item.id
+                            td= item.title
+                            td= item.price
+                            td 
+                                img(src= item.thumbnail, alt= item.title, class='img-thumbnail', style={width: '100px'})
