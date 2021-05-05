@@ -30,24 +30,22 @@ app.use(express.urlencoded({ extended: true }))
 
 let mostrados = 0
 
-const productos = products.getProd();
-
 // app.get('/productos', (req, res) => {
 //   res.render('inicio')
 // })
 
 io.on('connection', socket => {
-  console.log('cliente conectado!')
-  socket.emit('productos', productos)
+  console.log('client connected!')
+  socket.emit('products', { products: products.getProd() })
 
-  socket.on('boton', () => {
+  socket.on('btn', () => {
     mostrados++
-    socket.emit('productos', productos)
+    socket.emit('products', { products: products.getProd() })
   })
 })
 
 const PORT = 8080
 const server = httpServer.listen(PORT, () => {
-  console.log(`Servidor http escuchando en el puerto ${server.address().port}`)
+  console.log(`Http server listening on port ${server.address().port}`)
 })
-server.on("error", error => console.log(`Error en servidor ${error}`))
+server.on("error", error => console.log(`Error: ${error}`))

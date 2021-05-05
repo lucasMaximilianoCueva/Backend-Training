@@ -1,42 +1,6 @@
 export class ProductsDB {
     constructor() {
-        this.PRODUCTS_DB = [{
-            "title": "Macbook Air 256 GB",
-            "price": "200",
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3mpSXVnx8QtnJGkxA6s0OH5WEeTrcGTAcg&usqp=CAU",
-            "id": 1
-        },
-        {
-            "title": "Macbook Air 256 GB",
-            "price": "200",
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3mpSXVnx8QtnJGkxA6s0OH5WEeTrcGTAcg&usqp=CAU",
-            "id": 2
-        },
-        {
-            "title": "Macbook Air 256 GB",
-            "price": "200",
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3mpSXVnx8QtnJGkxA6s0OH5WEeTrcGTAcg&usqp=CAU",
-            "id": 3
-        },
-        {
-            "title": "Macbook Air 256 GB",
-            "price": "200",
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3mpSXVnx8QtnJGkxA6s0OH5WEeTrcGTAcg&usqp=CAU",
-            "id": 4
-        },
-        {
-            "title": "Macbook Air 256 GB",
-            "price": "200",
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3mpSXVnx8QtnJGkxA6s0OH5WEeTrcGTAcg&usqp=CAU",
-            "id": 5
-        },
-        {
-            "title": "Macbook Air 256 GB",
-            "price": "200",
-            "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU3mpSXVnx8QtnJGkxA6s0OH5WEeTrcGTAcg&usqp=CAU",
-            "id": 6
-        }
-    ];
+        this.PRODUCTS_DB = [];
         this.nextProdDb = 0;
     }
 
