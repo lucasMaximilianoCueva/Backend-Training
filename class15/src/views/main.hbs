@@ -1,0 +1,242 @@
+<div class="container">
+  <div class="loginForm col-lg-5 col-md-8 col-sm-8 p-4">
+    <div class="loginHeader pt-3 pb-4">
+      <h4>Product Form</h4>
+      <p>Type a Product!</p>
+    </div>
+    <form action="/api/products" method="post" autocomplete="off">
+      <div class="loginBody">
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <input type="text" id="title" class="form-control form-control-lg" name="title" placeholder="Name"
+              required />
+            <div class="input-group-append">
+              <span class="input-group-text p-3"><i class="fa fa-user"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <input type="number" id="price" class="form-control form-control-lg" name="price" placeholder="Price"
+              required />
+            <div class="input-group-append">
+              <span class="input-group-text p-3"><i class="fa fa-lock"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <input type="url" id="thumbnail" class="form-control form-control-lg" name="thumbnail"
+              placeholder="Url Image" required />
+            <div class="input-group-append">
+              <span class="input-group-text p-3"><i class="fa fa-lock"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="text-right form-group">
+          <a href="#">Help ?</a>
+        </div>
+        <div class="form-group">
+          <input type="submit" id="sendButton" class="btn btn-block btn-lg btn-primary" value="Save"></input>
+        </div>
+      </div>
+    </form>
+  </div>
+  <h1 class="text-center">Products</h1>
+
+  <div id='products'></div>
+</div>
+
+<div id="chat">
+  <div class="chat_header">Message Center</div>
+  <div id="chat_s"></div>
+  <script type="text/javascript">
+    var submitted = false;
+  </script>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display: none" onload="if(submitted){add()}"></iframe>
+  <form id="ss-form" onsubmit="return addMessage(this)"
+    action="https://docs.google.com/forms/d/1-PRLoHTtgldV5cNTvmVyjf-rf1p1kLhzKGXn2i1XGhQ/formResponse" method="POST"
+    target="hidden_iframe"><input name="entry.1732478127" title="" class="ss-q-short name-input" id="username"
+      dir="auto" aria-label="Message  " type="email" value="" autocomplete="off" placeholder="Email" required />
+    <input name="entry.1732478127" title="" class="ss-q-short" id="text" dir="auto" aria-label="Message  " type="text"
+      value="" autocomplete="off" placeholder="Type a message.." required />
+    <input name="draftResponse" type="hidden" value='[,,"-2195881827543510175"]&#10;' />
+    <input name="pageHistory" type="hidden" value="0" />
+    <input name="fvv" type="hidden" value="0" />
+    <input name="fbzx" type="hidden" value="-2195881827543510175" />
+    <input name="submit" class="jfk-button jfk-button-action" type="submit" value="Submit" />
+  </form>
+</div>
+
+<style>
+  @import "https://fonts.googleapis.com/css?family=Montserrat";
+
+  * {
+    margin: 0px;
+    padding: 0px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  #chat {
+    width: 860px;
+    height: 580px;
+    margin: auto;
+    margin-top: 8%;
+    border: 1px solid silver;
+    max-width: calc(100vw - 40px);
+    font-family: "Montserrat", sans-serif;
+    position: relative;
+    background: white;
+  }
+
+  .chat_header {
+    padding: 15px;
+    border-bottom: 5px solid #303030;
+    color: #303030;
+    margin-bottom: 8px;
+    font-size: 14px;
+    background: #f0f0f0;
+  }
+
+  .chat {
+    margin: 14px;
+    border: 1px solid #303030;
+    padding: 8px;
+    width: 520px;
+    border-radius: 10px 10px 10px 0;
+    max-width: calc(100% - 48px);
+    font-size: 0.85em;
+    word-break: break-word;
+  }
+
+  .chat_name {
+    text-transform: uppercase;
+    font-size: 0.75em;
+    margin: 4px 0 2px;
+  }
+
+  .chat_other {
+    border-radius: 10px 10px 0 10px;
+    margin-left: calc(100% - 249px);
+    border-color: grey;
+  }
+
+  #chat form {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+  }
+
+  #chat input[type="text"] {
+    width: calc(40% - 70px);
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid grey;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  #chat .name-input {
+    width: calc(59% - 70px);
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid grey;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  #chat input[type="submit"] {
+    width: 80px;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-left: -1px;
+    border: 1px solid grey;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+  }
+
+  #chat input[type="submit"]:hover {
+    background: grey;
+    color: #fff;
+  }
+
+  #chat_s {
+    overflow-y: scroll;
+    max-height: 360px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 0 4px #fff;
+    background: rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+<script>
+  const socket = io.connect();
+
+  document.getElementById('sendButton').addEventListener('submit', (e) => {
+    e.preventDefault();
+    socket.emit('btn')
+  })
+
+  let productsTemplate
+
+  socket.on('products', async (products) => {
+    if (!productsTemplate) {
+      const file = await fetch('templates/table.hbs')
+      const templateText = await file.text()
+      productsTemplate = Handlebars.compile(templateText);
+      console.log(products);
+    }
+    const htmlTable = productsTemplate(products);
+    document.getElementById('products').innerHTML = htmlTable
+  })
+
+  function render(data) {
+    const html = data.map((elem, index) => {
+      return (`
+        <div class="chat">
+        <div class="chat_message"><i style="color: darkgreen;">${elem.text} : { ${elem.time} }</i></div>
+        <div class="chat_name"><b style="color: blue;">${elem.author}</b></div>
+        </div>
+        `)
+    }).join(" ");
+    document.getElementById('chat_s').innerHTML = html;
+  };
+
+  function addMessage(e) {
+    const message = {
+      author: document.getElementById('username').value,
+      text: document.getElementById('text').value,
+      time: moment().format('DD/MM/YYYY h:mm:ss a') 
+    };
+    socket.emit('new-message', message);
+    document.getElementById('text').value = "";
+    return false;
+  }
+  function reset() {
+    document.getElementById('username').value = " ";
+    document.getElementById('text').value = " ";
+  }
+
+  socket.on('messages', data => {
+    render(data);
+  });
+</script>
+
+{{!-- <style>
+  .loginForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #f3f3f3;
+    box-shadow: 1px 1px 4px #dcdcdc;
+  }
+</style> --}}
