@@ -1,7 +1,9 @@
+import moment from 'moment';
+
 export class ProductsDB {
     constructor() {
         this.PRODUCTS_DB = [
-             {
+            {
                     "title": "Volkswagen",
                     "timestamp": "2021-06-13T17:39:53.231Z",
                     "code": 178221,
@@ -13,6 +15,7 @@ export class ProductsDB {
                 }
         ];
         this.nextProdDb = 0;
+        this.timeStamp = moment().format('DD/MM/YYYY h:mm:ss a') 
     }
 
     getProd() {
@@ -29,7 +32,7 @@ export class ProductsDB {
     };
 
     postProd(data) {
-        const newProd = { ...data, id: ++this.nextProdDb };
+        const newProd = { ...data, id: ++this.nextProdDb, timestamp: this.timeStamp };
         this.PRODUCTS_DB.push(newProd);
         return newProd;
     };
@@ -60,5 +63,3 @@ export class ProductsDB {
 const prod = new ProductsDB();
 
 export { prod };
-
-
