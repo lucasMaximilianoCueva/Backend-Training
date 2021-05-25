@@ -1,0 +1,13 @@
+mongo
+
+use prueba
+
+db 
+
+db.items.insertMany([{nombre:"Fideos", categoria:"Harina", stock:"20"},{nombre:"Leche", categoria:"Lácteos", stock:"30"},{nombre:"Crema", categoria:"Lácteos", stock:"15"}])
+
+db.items.find()
+
+show collections
+
+show dbs
