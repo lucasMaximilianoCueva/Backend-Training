@@ -1,1 +1,239 @@
+> use ecommerce
+switched to db ecommerce
+> db.createCollection("messages")
+{ "ok" : 1 }
+> db.createCollection("products")
+{ "ok" : 1 }
+> db.messages.insertMany([{email: "samdev@gmail.com", message: "Hi. Sam"},{email: "michaelmkt@outlook.com", message: "Michael. Good to meet you!"},{email: "samdev@gmail.com", message: "Did you just arrive here?"},{email: "michaelmkt@outlook.com", message: "Yeah, We arrived last week"},{email: "samdev@gmail.com", message: "How do you like it?"},{email: "michaelmkt@outlook.com", message: "It’s exciting! It’s much busier than the last city we lived in. I was working in Seattle for the last 3 years."},{email: "samdev@gmail.com", message: "It really is very busy. I moved here from Tokyo 5 years ago and I still have trouble sometimes. Did you move here with your wife?"},{email: "michaelmkt@outlook.com", message: "Actually, I’m not married. I moved here with my dog, Charles. We are very close."},{email: "samdev@gmail.com", message: "Oh. I see."}, {email: "michaelmkt@outlook.com", message: "What about you?"}, {email: "samdev@gmail.com", message: "Yes, I am married and I have two children."}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("60afba1ebe386fb37cdea36b"),
+		ObjectId("60afba1ebe386fb37cdea36c"),
+		ObjectId("60afba1ebe386fb37cdea36d"),
+		ObjectId("60afba1ebe386fb37cdea36e"),
+		ObjectId("60afba1ebe386fb37cdea36f"),
+		ObjectId("60afba1ebe386fb37cdea370"),
+		ObjectId("60afba1ebe386fb37cdea371"),
+		ObjectId("60afba1ebe386fb37cdea372"),
+		ObjectId("60afba1ebe386fb37cdea373"),
+		ObjectId("60afba1ebe386fb37cdea374"),
+		ObjectId("60afba1ebe386fb37cdea375")
+	]
+}
+> db.productos.insertMany([
+...   {
+...     nombre: "maseta",
+...     descripcion: "maseta xxl",
+...     codigo: 365,
+...     precio: 2100
+...   },
+...   {
+...     nombre: "silla",
+...     descripcion: "silla de comedor",
+...     codigo: 190,
+...     precio: 4600
+...   },  
+... {
+...     nombre: "vaso",
+...     descripcion: "vaso de vidrio",
+...     codigo: 865,
+...     precio: 300
+...   },
+...   {
+...     nombre: "almohada",
+...     descripcion: "almohada viscoelastica",
+...     codigo: 512,
+...     precio: 4500
+...   },
+...   {
+...     nombre: "mantel",
+...     descripcion: "mantel para mesa",
+...     codigo: 456,
+...     precio: 1476
+...   },
+...   {
+...     nombre: "calefaccion convector",
+...     descripcion: "convector 2500w",
+...     codigo: 723,
+...     precio: 6499
+...   },
+...   {
+...     nombre: "horno electrico",
+...     descripcion: "horno electrico pequeño",
+...     codigo: 299,
+...     precio: 9500
+...   },
+...   {
+...     nombre: "jarra",
+...     descripcion: "jarra para jugos",
+...     codigo: 578,
+...     precio: 600
+...   },
+...   {
+...     nombre: "vino",
+...     descripcion: "vino reserva 2015",
+...     codigo: 257,
+...     precio: 4768
+...   },
+...   {
+...     nombre: "caja de te",
+...     descripcion: "caja para guardar tes",
+...     codigo: 623,
+...     precio: 4000
+...   },
+... ]
+... )
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("60afbc0ebe386fb37cdea376"),
+		ObjectId("60afbc0ebe386fb37cdea377"),
+		ObjectId("60afbc0ebe386fb37cdea378"),
+		ObjectId("60afbc0ebe386fb37cdea379"),
+		ObjectId("60afbc0ebe386fb37cdea37a"),
+		ObjectId("60afbc0ebe386fb37cdea37b"),
+		ObjectId("60afbc0ebe386fb37cdea37c"),
+		ObjectId("60afbc0ebe386fb37cdea37d"),
+		ObjectId("60afbc0ebe386fb37cdea37e"),
+		ObjectId("60afbc0ebe386fb37cdea37f")
+	]
+}
+> db.productos.count()
+10
+> db.mensajes.find().pretty()
+> db.productos.find().pretty()
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea376"),
+	"nombre" : "maseta",
+	"descripcion" : "maseta xxl",
+	"codigo" : 365,
+	"precio" : 2100
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea377"),
+	"nombre" : "silla",
+	"descripcion" : "silla de comedor",
+	"codigo" : 190,
+	"precio" : 4600
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea378"),
+	"nombre" : "vaso",
+	"descripcion" : "vaso de vidrio",
+	"codigo" : 865,
+	"precio" : 300
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea379"),
+	"nombre" : "almohada",
+	"descripcion" : "almohada viscoelastica",
+	"codigo" : 512,
+	"precio" : 4500
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea37a"),
+	"nombre" : "mantel",
+	"descripcion" : "mantel para mesa",
+	"codigo" : 456,
+	"precio" : 1476
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea37b"),
+	"nombre" : "calefaccion convector",
+	"descripcion" : "convector 2500w",
+	"codigo" : 723,
+	"precio" : 6499
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea37c"),
+	"nombre" : "horno electrico",
+	"descripcion" : "horno electrico pequeño",
+	"codigo" : 299,
+	"precio" : 9500
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea37d"),
+	"nombre" : "jarra",
+	"descripcion" : "jarra para jugos",
+	"codigo" : 578,
+	"precio" : 600
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea37e"),
+	"nombre" : "vino",
+	"descripcion" : "vino reserva 2015",
+	"codigo" : 257,
+	"precio" : 4768
+}
+{
+	"_id" : ObjectId("60afbc0ebe386fb37cdea37f"),
+	"nombre" : "caja de te",
+	"descripcion" : "caja para guardar tes",
+	"codigo" : 623,
+	"precio" : 4000
+}
+> db.productos.insertOne({
+...     nombre: "ventilador",
+...     descripcion: "ventilador de ambiente mediano",
+...     codigo: 234,
+...     precio: 7400
+...   })
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("60afbc95be386fb37cdea380")
+}
+> db.productos.find({precio: {$lt: 1000}}, {"nombre": 1});
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea378"), "nombre" : "vaso" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37d"), "nombre" : "jarra" }
+> db.productos.find({$and: [{precio: {$gt:1000}}, {precio: {$lt:3000}} ]} , {"nombre": 1})
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea376"), "nombre" : "maseta" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37a"), "nombre" : "mantel" }
+> db.productos.find({precio: {$gt: 3000}}, {"nombre": 1});
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea377"), "nombre" : "silla" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea379"), "nombre" : "almohada" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37b"), "nombre" : "calefaccion convector" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37c"), "nombre" : "horno electrico" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37e"), "nombre" : "vino" }
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37f"), "nombre" : "caja de te" }
+{ "_id" : ObjectId("60afbc95be386fb37cdea380"), "nombre" : "ventilador" }
+> 
+> 
+> db.productos.find({}).sort({"precio":1}).skip(2).limit(1);
+{ "_id" : ObjectId("60afbc0ebe386fb37cdea37a"), "nombre" : "mantel", "descripcion" : "mantel para mesa", "codigo" : 456, "precio" : 1476 }
+> 
+> db.productos.updateMany({}, {$set: {"stock": 100}}, {upsert: true});
+{ "acknowledged" : true, "matchedCount" : 11, "modifiedCount" : 11 }
+> 
+> db.productos.update({precio: {$gt: 4000}}, {$set: {"stock": 0}}, {multi: true});
+WriteResult({ "nMatched" : 6, "nUpserted" : 0, "nModified" : 6 })
+> 
+> db.productos.deleteMany({precio: {$lt: 1000}});
+{ "acknowledged" : true, "deletedCount" : 2 }
+> 
+> use userAdmin
+switched to db userAdmin
+> 
+> db.createUser(
+...   {
+...     user: "lucas",
+...     pwd: "pass",
+...     roles: [
+...        { role: "read", db: "ecommerce" }
+...     ]
+...   }
+... )
+Successfully added user: {
+	"user" : "lucas",
+	"roles" : [
+		{
+			"role" : "read",
+			"db" : "ecommerce"
+		}
+	]
+}
 
+//user
+
+> mongo -u lucas -p pass
+> mongo --port 27017  --authenticationDatabase "ecommerce" -u "lucas" -p
