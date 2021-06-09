@@ -1,35 +1,178 @@
-const express = require('express');
-const cors = require('cors');
-const prod = require('./prod');
+import express from "express";
+import { Server as HttpServer } from 'http';
+import { Server as Socket } from 'socket.io';
+import cors from "cors";
+import { cartDb } from "./cart.js";
+import { chat } from "./chat.js";
+import { ProductsRepository } from "./Core/ProductsRepository.js";
+
+const productsRepository = new ProductsRepository(6)
+
+const admin = true;
 
 const app = express();
+const httpServer = new HttpServer(app);
+const io = new Socket(httpServer);
 
-app.get('/api/cart', cors(), (req, res) => {
-  const cart = [
-    {
-      "id": 1,
-      "timestamp":"2021-05-13T01:39:53.231Z",
-      "product": [{
-          "title": "Volkswagen",
-          "price": 80000,
-          "thumbnail": "https://s7d1.scene7.com/is/image/volkswagen/VW_NGW6_Launch_ID4_Homepage_Masthead?Zml0PWNyb3AsMSZmbXQ9anBnJnFsdD03OSZ3aWQ9ODAwJmhlaT04MDAmYWxpZ249MC4wMCwwLjAwJmEzZWU=",
-          "id": 1
-      }]
-  }
-  ];
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-  res.json(cart);
+app.get("/api/cart", cors(), (req, res) => {
+  res.json(cartDb.getCart());
 });
 
-app.get('/api/products', cors(), (req, res) => {
-  res.json(prod.getProd());
-});
-
-app.get('/api/cart', cors(), (req, res) => {
+app.get("/api/cart/:id", cors(), (req, res) => {
   const { id } = req.params;
-  res.json(prod.getProdId(id));
+  res.json(cartDb.getCartId(id));
+});
+
+app.post("/api/cart", (req, res) => {
+  if (admin) {
+    const data = req.body;
+    cartDb.postCart(data);
+  } else {
+    res.send(
+      `"error" : 'does not have permissions', "description": route = '${req.url}' method = '${req.method}' not authorized`
+    );
+  }
+});
+
+app.delete("/api/cart/:id", (req, res) => {
+  if (admin) {
+    const { id } = req.params;
+    res.json(cartDb.deleteCartItem(id));
+  } else {
+    res.send(
+      `"error" : 'does not have permissions', "description": route = '${req.url}' method = '${req.method}' not authorized`
+    );
+  }
+});
+
+// API PROD
+
+app.get("/api/products", cors(), (req, res) => {
+  // productsRepository.create(); // ifNotExist
+  productsRepository
+    .list()
+    .then((items) => {
+      let response = [];
+      console.log(req.query);
+
+      if (typeof req.query.sale != "undefined") {
+        items.filter(function (item) {
+          if (item.sale.toString() == req.query.sale) { // offers
+            response.push(item);
+          }
+        });
+      }
+      if (typeof req.query.title != "undefined") { //title
+        items.filter(function (item) {
+          if (item.title.toLowerCase() == req.query.title) {
+            response.push(item);
+          }
+        });
+      }
+      if (typeof req.query.code != "undefined") { //code
+        items.filter(function (item) {
+          if (item.code.toString() == req.query.code) {
+            response.push(item);
+          }
+        });
+      }
+      if (typeof req.query.price != "undefined") { //price A
+        items.filter(function (item) {
+          if (item.price.toString() === req.query.price) {
+            response.push(item);
+          } 
+        });
+      }
+      if (typeof req.query.stock != "undefined") { //stock
+        items.filter(function (item) {
+          if (item.stock.toString() == req.query.stock) {
+            response.push(item);
+          }
+        });
+      }
+      if (Object.keys(req.query).length === 0) {
+        response = items;
+      }
+      res.json(response);
+    })
+    .catch(function (err) {
+      throw err; // or handle it
+    });
+});
+
+app.get("/api/products/:id", cors(), (req, res) => {
+  const { id } = req.params;
+  productsRepository.listById(id).then((list) => {
+    res.json(list);
+  })
+});
+
+app.post("/api/products", (req, res) => {
+  if (admin) {
+    const data = req.body;
+    productsRepository.insert(data).then(() => {
+      res.json(data)
+    })
+    // res.redirect('http://localhost:3000/products');
+  } else {
+    res.send(
+      `"error" : 'does not have permissions', "description": route = '${req.url}' method = '${req.method}' not authorized`
+    );
+  }
+});
+
+app.put("/api/products/:id", (req, res) => {
+  if (admin) {
+    const data = req.body;
+    const { id } = req.params;
+    productsRepository.updateById(id, data).then(() => {
+      res.json(data)
+    })
+  } else {
+    res.send(
+      `"error" : 'does not have permissions', "description": route = '${req.url}' method = '${req.method}' not authorized`
+    );
+  }
+});
+
+app.delete("/api/products/:id", (req, res) => {
+  if (admin) {
+    const { id } = req.params;
+    productsRepository.deleteById(id).then(() => {
+      res.json(`product with id ${id} deleted`)
+    })
+  } else {
+    res.send(
+      `"error" : 'does not have permissions', "description": route = '${req.url}' method = '${req.method}' not authorized`
+    );
+  }
+});
+
+//SOCKET.IO
+
+io.on("connection", socket => {
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+  console.log('user connected!')
+
+  chat.list().then((list) => {
+    socket.emit("messages", list );
+  })
+
+
+  socket.on("new-message", data => {
+    chat.insert(data).then(() => {
+    })
+    chat.list().then((list) => {
+      io.emit("messages", list );
+    })
+  });
 });
 
 const port = 5000;
 
-app.listen(port, () => `Server running on port ${port}`);
+httpServer.listen(port, () => `Server running on port ${port}`);
